@@ -4,20 +4,27 @@ import {useState, useEffect} from 'react';
 
 export default function RealTimeClock(){
     const [time, setTime] = useState(null);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTime(new Date().toLocaleTimeString().toUpperCase());
-        }, 1000);
+        setMounted(true);
+
+        const updateClock = () => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString().toUpperCase());
+        };
+
+        updateClock();
+        const timer = setInterval(updateClock, 1000);
 
         return () => clearInterval(timer);
     }, []);
 
-    if(!time) return <p>Loading local time...</p>;
+    if(!mounted) return <div><p>Loading local time...</p></div>;
 
     return(
         <div>
-            <p className="text text-lg text-white">{time}</p>
+            <p className="text-lg text-white">{time}</p>
         </div>
     );
 }
