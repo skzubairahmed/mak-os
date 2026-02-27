@@ -11,12 +11,19 @@ export default function Home() {
   return (
     <div>
       <WallpaperHandler />
-      <div className="fixed inset-0 p-4 pt-10 flex flex-col flex-wrap content-start gap-4">
-        {
-          DESKTOP_ICONS.map((app) => (
-            <IconHandler app={app} key={app.id} />
-          ))
-        }
+        <div className="flex flex-col gap-3">
+          <div className="contianer-fluid p-1 bg-black flex flex-row justify-between">
+            <span className="text-white text-lg">
+              00:00:00
+            </span>
+          </div>
+        <div className="fixed inset-0 p-4 pt-10 flex flex-col flex-wrap content-start gap-4">
+          {
+            DESKTOP_ICONS.map((app) => (
+              <IconHandler app={app} key={app.id} />
+            ))
+          }
+        </div>
       </div>
     </div>
   );
