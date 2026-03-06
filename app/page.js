@@ -6,6 +6,7 @@ import RealTimeClock from "./components/rtc";
 import Window from "./components/windows";
 
 import AboutMeComponent from "./components/aboutMe";
+import Socials from "./components/socials";
 
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ import { useState } from "react";
 
   const APPS = {
     'about me':<AboutMeComponent/>,
+    'socials':<Socials />,
   }
 
 export default function Home() {
