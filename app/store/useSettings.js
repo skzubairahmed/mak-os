@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from 'zustand/middleware';
 
-export const useWallpaper = create(
+export const useSettings = create(
     persist(
         (set) => ({
             currentWallpaper: '/backgrounds/default.jpg',

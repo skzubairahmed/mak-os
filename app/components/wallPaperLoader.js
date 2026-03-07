@@ -1,10 +1,10 @@
 'use client';
 
-import { useWallpaper } from "../store/useWallpaper";
+import { useSettings } from "../store/useSettings";
 import Image from "next/image";
 
 export default function WallpaperHandler(){
-    const {currentWallpaper, brightness} = useWallpaper();
+    const {currentWallpaper, brightness} = useSettings();
     return(
         <div className="fixed inset-0 -z-50 transition-all duration-700 ease-in-out"
         style={{filter:`brightness(${brightness}%)`}}

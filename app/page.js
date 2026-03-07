@@ -7,6 +7,7 @@ import Window from "./components/windows";
 
 import AboutMeComponent from "./components/aboutMe";
 import Socials from "./components/socials";
+import Settings from "./components/settings";
 
 import { useState, useEffect } from "react";
 
@@ -19,6 +20,7 @@ import { useState, useEffect } from "react";
   const APPS = {
     'about me':<AboutMeComponent/>,
     'socials':<Socials />,
+    'settings':<Settings />,
   }
 
 export default function Home() {
@@ -74,9 +76,7 @@ export default function Home() {
 
   const toggleMinimized = (id) => {
     setMinimizedWindows((prev) => 
-      prev.includes(id)
-        ? prev.filter(appId => appId !== id)
-        : [...prev, id], console.log('tried')                     
+      prev.includes(id) ? prev.filter(appId => appId !== id) : [...prev, id], console.log('tried')             
     );
   }
 
@@ -89,7 +89,7 @@ export default function Home() {
     <div className="h-screen w-screen relative overflow-hidden">
       <WallpaperHandler />
         <div className="flex flex-col gap-4">
-            <div className="contianer-fluid p-1 bg-black flex flex-row justify-between mb-3">
+            <div className="z-999 container-fluid p-1 bg-black flex flex-row justify-between mb-3">
               <div className="flex flex-row gap-3">
                 {
                   openWindows.map((win) => (
