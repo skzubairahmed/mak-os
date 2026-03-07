@@ -60,7 +60,7 @@ export default function Home() {
     const exists = openWindows.find(win => win.id === id);
 
     if(!exists){
-      setOpenWindows([...openWindows, {id, x:100, y:100}]);
+      setOpenWindows([...openWindows, {id, x:20, y:20}]);
     }else{
       setMinimizedWindows(minimizedWindows.filter(appId => appId !== id));
     }
