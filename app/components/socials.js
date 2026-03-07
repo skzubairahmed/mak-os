@@ -19,7 +19,7 @@ export default function Socials(){
                 <div className="flex flex-wrap gap-5">
                     {
                         SOCIAL_IDS.map((social) => (
-                            <div className="w-40 h-45 text-white backdrop-blur-600 rounded-lg p-4 text-black flex flex-col gap-1 items-center border-2 border-white">
+                            <div key={social.id} className="w-40 h-45 text-white backdrop-blur-600 rounded-lg p-4 text-black flex flex-col gap-1 items-center border-2 border-white">
                                 <img src={social.image_url} alt={social.alt} className="h-20 w-20" />
                                 <span>{social.id}</span>
                                 <Link href={social.url} target="_blank">
