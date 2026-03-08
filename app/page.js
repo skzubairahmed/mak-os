@@ -1,5 +1,7 @@
 "use client"
 
+import SettingsIcon from '@mui/icons-material/Settings';
+
 import WallpaperHandler from "./components/wallPaperLoader";
 import IconHandler from "./components/iconLoader";
 import RealTimeClock from "./components/rtc";
@@ -76,12 +78,22 @@ export default function Home() {
 
   const toggleMinimized = (id) => {
     setMinimizedWindows((prev) => 
-      prev.includes(id) ? prev.filter(appId => appId !== id) : [...prev, id], console.log('tried')             
+      prev.includes(id) ? prev.filter(appId => appId !== id) : [...prev, id]           
     );
   }
 
   const closeApp = (id) => {
     setOpenWindows(openWindows.filter(win => win.id !== id));
+  }
+
+  const toggleApp = (id) => {
+    const isOpen = openWindows.some(win => win.id === id);
+
+    if(!isOpen){
+      openApp(id);
+    }else{
+      closeApp(id);
+    }
   }
 
   if (!isLoaded) return <div className="bg-black h-screen w-screen" />
@@ -93,15 +105,20 @@ export default function Home() {
               <div className="flex flex-row gap-3">
                 {
                   openWindows.map((win) => (
-                    <button key={win.id} style={{zIndex:999}} onClick={() => toggleMinimized(win.id)} className={`${minimizedWindows.includes(win.id) ? 'bg-gray-500' : 'bg-blue-500'} button text-white capitalize border-2-white px-2 rounded-md cursor-pointer`}>
+                    <button key={win.id} style={{zIndex:999}} onClick={() => toggleMinimized(win.id)} className={`${minimizedWindows.includes(win.id) ? 'bg-gray-500' : 'bg-blue-500'} button text-white capitalize border-2-white px-2 rounded-md cursor-pointer flex flex-row gap-2 items-center`}>
                       {win.id}
                     </button>
                   ))
                 }
               </div>
-              <span className="text-white text-lg">
-                <RealTimeClock />
-              </span>
+              <div className="flex flex-row gap-3 items-center">
+                <span className="text-white text-lg">
+                  <RealTimeClock />
+                </span>
+                <div onClick={() => {toggleApp('settings')}} className='cursor-pointer p-0 m-0'>
+                  <SettingsIcon />
+                </div>
+              </div>
             </div>
             <div className="fixed inset-0 p-4 mt-2 pt-10 flex flex-col flex-wrap content-start gap-4">
               {

@@ -1,15 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import Provider from './components/provider';
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const fontInter = localFont({src:'../public/fonts/Inter.ttf', variable:'--font-inter'});
+const fontGeist = localFont({src:'../public/fonts/Geist.ttf', variable:'--font-geist'});
+const fontSpaceGrotesk = localFont({src:'../public/fonts/SpaceGrotesk.ttf', variable:'--font-spacegrotesk'});
+const fontOswald = localFont({src:'../public/fonts/Oswald.ttf', variable:'--font-oswald'});
 
 export const metadata = {
   title: "MakOS",
@@ -18,11 +15,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html className={`${fontSpaceGrotesk.variable} ${fontGeist.variable} ${fontInter.variable} ${fontOswald.variable}`} lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className='antialiased'
       >
-        {children}
+        <Provider>
+          {children}
+        </Provider>
       </body>
     </html>
   );
